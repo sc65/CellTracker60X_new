@@ -13,10 +13,10 @@ pixelsX = double(metadata.getPixelsSizeX(0).getValue());
 pixelsY = double(metadata.getPixelsSizeY(0).getValue());
 imageBits = double(metadata.getPixelsSignificantBits(0).getNumberValue);
 
-maxZ = uint16(zeros(pixelsX, pixelsY, channels));
+maxZ = uint8(zeros(pixelsX, pixelsY, channels));
 
 for ii = 1:channels
-    maxZ_1 = uint16(zeros(1024));
+    maxZ_1 = maxZ(:,:,ii);
     for jj = 1:zslices
         imagePlane = filereader.getIndex(jj-1,ii-1,1-1)+1; %a single timepoint.
         imageFile = bfGetPlane(filereader, imagePlane);
